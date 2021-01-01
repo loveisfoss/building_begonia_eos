@@ -102,3 +102,7 @@ libncurses5
 bc
 zip
 ```
+
+# ToDo
+1. Find a way to include https://gitlab.com/the-muppets/proprietary_vendor_xiaomi/-/tree/lineage-17.1 in the "local_manifest.xml".
+2. Make it clear with PATH restrictions.
