@@ -30,7 +30,7 @@ Note: I've used my own repo "FishOnTheGround/proprietary_vendor_xiaomi" because 
 ```
 repo sync -j8
 ```
-The resulting files in your work directory should be >100G in size.
+The resulting files in your work directory should be ~200G in size.
 
 5. Set up /e/
 In your working directory, go to ".../device/xiaomi/begonia/vendorsetup.sh". Create it if it doesn't exist. Example of parameters that can be included here:
