@@ -73,7 +73,7 @@ BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=Permissive
 Source: https://review.lineageos.org/c/LineageOS/android_device_xiaomi_mt6785-common/+/298385
 
 # Disable path restrictions
-One can modify ".../build/make/core/config.mk" to temporarily allow using PATH by commenting out this line:
+This one is probably needed for the build to succeed. One can modify ".../build/make/core/config.mk" to temporarily allow using PATH by commenting out this line:
 ```
 $(KATI_obsolete_var PATH,Do not use PATH directly. See $(CHANGES_URL)#PATH)
 ```
