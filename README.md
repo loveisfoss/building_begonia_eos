@@ -40,12 +40,9 @@ export EOS_SIGNATURE_SPOOFING=restricted
 export EOS_BRANCH_NAME=v1-q
 export EOS_RELEASE_TYPE=UNOFFICIAL
 export EOS_SIGN_BUILDS=true
-export TEMPORARY_DISABLE_PATH_RESTRICTIONS=true
 ```
 
 For their default values look into ".../vendor/e/vendorsetup.sh". Do not change variables in ".../vendor/e/vendorsetup.sh" though. Just find out what the proper variable name is and set that EOS_xxx variable within your ".../device/xiaomi/begonia/vendorsetup.sh".
-
-Note: Not sure that the last parameter belongs here. It didn't cause any problems though. See "Disable path restrictions" down below.
 
 6. lineage.mk
 
@@ -76,14 +73,7 @@ BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=Permissive
 Source: https://review.lineageos.org/c/LineageOS/android_device_xiaomi_mt6785-common/+/298385
 
 # Disable path restrictions (don't know if needed and which of the following ways is the one that's probaly working. I implemented both and the build succeeded.) 
-
-A. Set 
-```
-export TEMPORARY_DISABLE_PATH_RESTRICTIONS=true
-```
-in your build environment. I added it in ".../device/xiaomi/begonia/vendorsetup.sh".
-
-B. One can modify ".../build/make/core/config.mk" to temporarily allow using PATH by commenting out this line:
+One can modify ".../build/make/core/config.mk" to temporarily allow using PATH by commenting out this line:
 ```
 $(KATI_obsolete_var PATH,Do not use PATH directly. See $(CHANGES_URL)#PATH)
 ```
@@ -104,5 +94,4 @@ zip
 ```
 
 # ToDo
-1. Find a way to include https://gitlab.com/the-muppets/proprietary_vendor_xiaomi/-/tree/lineage-17.1 in the "local_manifest.xml".
-2. Make it clear with PATH restrictions.
+* Find a way to include https://gitlab.com/the-muppets/proprietary_vendor_xiaomi/-/tree/lineage-17.1 in the "local_manifest.xml".
