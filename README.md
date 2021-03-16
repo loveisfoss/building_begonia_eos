@@ -12,19 +12,21 @@ repo init -u https://gitlab.e.foundation/e/os/releases.git -b v1-q
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  
+  <remote name="gitlab" fetch="https://gitlab.com" />
 
   <project name="LineageOS/android_device_xiaomi_begonia" path="device/xiaomi/begonia" remote="github" />
+  <project name="LineageOS/android_device_xiaomi_begoniain" path="device/xiaomi/begoniain" remote="github" />
   <project name="LineageOS/android_kernel_xiaomi_mt6785" path="kernel/xiaomi/mt6785" remote="github" />
   <project name="LineageOS/android_device_xiaomi_mt6785-common" path="device/xiaomi/mt6785-common" remote="github" />
   <project name="LineageOS/android_hardware_mediatek" path="hardware/mediatek" remote="github" />
   <project name="LineageOS/android_device_mediatek_sepolicy" path="device/mediatek/sepolicy" remote="github" />
   <project name="HyperTeam/proprietary_vendor_firmware" path="vendor/firmware" remote="github" />
-  <project name="FishOnTheGround/proprietary_vendor_xiaomi" path="vendor/xiaomi" remote="github" />
+  <project name="the-muppets/proprietary_vendor_xiaomi" path="vendor/xiaomi" remote="gitlab" revision=lineage-17.1 />
   <project path="vendor/e" name="steadfasterX/android_vendor_e" remote="e" revision="v1-q" />
 
 </manifest>
 ```
-Note: I've used my own repo "FishOnTheGround/proprietary_vendor_xiaomi" because I don't know how to include gitlab in the local_manifest.xml right now. The really needed repo here is: https://gitlab.com/the-muppets/proprietary_vendor_xiaomi/-/tree/lineage-17.1 and the folders that are needed are "begonia" and "mt6785-common". So, check every time, before building, to see if the needed folders/files in the "the-muppets" repo have been updated.
 
 4. Sync the repos
 ```
@@ -59,8 +61,9 @@ lunch lineage_begonia-userdebug
 mka eos
 ```
 
+# Useful Information
 
-# Permissive SELinux (needed at the tme of writing)
+## Permissive SELinux (needed at the tme of writing)
 Open ".../device/xiaomi/mt6785-common/BoardConfigCommon.mk" and edit line 64. \
 Instead of:
 ```
@@ -72,13 +75,13 @@ BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
 ```
 Source: https://review.lineageos.org/c/LineageOS/android_device_xiaomi_mt6785-common/+/298385
 
-# Disable path restrictions
+## Disable path restrictions
 This one is probably needed for the build to succeed. One can modify ".../build/make/core/config.mk" to temporarily allow using PATH by commenting out this line:
 ```
 $(KATI_obsolete_var PATH,Do not use PATH directly. See $(CHANGES_URL)#PATH)
 ```
 
-# Possible hinders
+## Possible hinders
 When trying to build you may fail sometimes at the beginning because of various reasons. 
 
 * ccache \
@@ -93,5 +96,8 @@ bc
 zip
 ```
 
-# ToDo
-* Find a way to include https://gitlab.com/the-muppets/proprietary_vendor_xiaomi/-/tree/lineage-17.1 in the "local_manifest.xml".
+## Possible solution to syncing problem
+Useful command to overcome syncing problems, like changes not being included to the build even if "repo sync -j8" succeeds. For example, for some version name changes to the vendor/lineage directory that were not updated on the builds, it helped with:
+```
+cd /.../vendor/lineage 
+git reset --hard 
