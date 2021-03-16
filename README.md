@@ -42,6 +42,7 @@ export EOS_SIGNATURE_SPOOFING=restricted
 export EOS_BRANCH_NAME=v1-q
 export EOS_RELEASE_TYPE=UNOFFICIAL
 export EOS_SIGN_BUILDS=true
+export EOS_MINIMAL_APPS=true
 ```
 
 For their default values look into ".../vendor/e/vendorsetup.sh". Do not change variables in ".../vendor/e/vendorsetup.sh" though. Just find out what the proper variable name is and set that EOS_xxx variable within your ".../device/xiaomi/begonia/vendorsetup.sh".
