@@ -100,7 +100,7 @@ zip
 ## Solution to version naming problem
 Repo sync does not touch vendor/lineage.
 
-1. In some previous build, the past vendor/e had changed the version number in vendor/lineage (which it does not anymore). That means the repo is in an "unclean" state after building.
+1. In some previous build, the past vendor/e had changed the version number in vendor/lineage (which it does not anymore, because - as I understand - it detects the previous change and leaves it untouched)). That means the repo is in an "unclean" state after building.
 2. repo sync will only try to update vendor/lineage if there are changes online which need to be pulled
 3. There are rarely online changes in vendor/lineage so that does not happen often
 4. IF there are changes in vendor/lineage and one starts repo sync it would FAIL syncing (even when using force option).
