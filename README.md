@@ -97,8 +97,18 @@ bc
 zip
 ```
 
-## Possible solution to syncing problem
-Useful command to overcome syncing problems, like changes not being included to the build even if "repo sync -j8" succeeds. For example, for some version name changes to the vendor/lineage directory that were not updated on the builds, it helped with:
+## Solution to version naming problem
+Repo sync does not touch vendor/lineage.
+
+1. In some previous build, the past vendor/e had changed the version number in vendor/lineage (which it does not anymore). That means the repo is in an "unclean" state after building.
+2. repo sync will only try to update vendor/lineage if there are changes online which need to be pulled
+3. There are rarely online changes in vendor/lineage so that does not happen often
+4. IF there are changes in vendor/lineage and one starts repo sync it would FAIL syncing (even when using force option).
+
+All the above is the standard repo behavior so nothing special with vendor/e or vendor/lineage actually.
+
+The version naming can easily be updated by executing the following command before doing a repo sync.
 ```
-cd /.../vendor/lineage 
+cd .../vendor/lineage 
 git reset --hard 
+```
