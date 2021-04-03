@@ -113,4 +113,4 @@ git reset --hard
 ```
 
 ## swap
-Remember that building and android rom is a memory demanding process. Enable swap on your system in order not to face problems while building!
+Remember that building an android rom is a memory demanding process. Enable swap on your system in order not to face problems while building!
