@@ -111,3 +111,6 @@ The version naming can easily be updated by executing the following command befo
 cd .../vendor/lineage 
 git reset --hard 
 ```
+
+## swap
+Remember that building and android rom is a memory demanding process. Enable swap on your system in order not to face problems while building!
